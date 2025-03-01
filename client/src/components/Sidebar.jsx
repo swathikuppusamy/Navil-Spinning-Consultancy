@@ -1,42 +1,39 @@
-import React from 'react'
-import Logo from '../assets/img/logo.png'
-import { NavLink,Link } from 'react-router-dom'
+import React from 'react';
+import Logo from '../assets/img/logo.png';
+import { NavLink } from 'react-router-dom';
+
 const Sidebar = () => {
-    const navlink=[
-        {
-        path:'/',
-        title:'Dashboard'
-        },
-        {
-            path:'/list',
-            title:'Sales Invoice'
-        },
-        {
-            path:'/stock',
-            title:'Stocks'
-        }
-]
+    const navlinks = [
+        { path: '/', title: 'Dashboard' },
+        { path: '/list', title: 'Sales Invoice' },
+        { path: '/stock', title: 'Stocks' }
+    ];
+
     return (
-        <div>
-            <div className="bg-blue-500 w-[15vw] h-screen flex flex-col items-center py-6 ">
+        <div className="h-screen w-[15vw] bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg flex flex-col items-center py-6">
+            
+            {/* Logo */}
+            <img 
+                src={Logo} 
+                alt="Logo" 
+                className="w-[8vw] rounded-full shadow-lg transition-transform duration-300 hover:scale-105"
+            />
 
-                <img src={Logo} alt="logo" className='w-[10vw] rounded-full shadow-lg drop-shadow-xl' />
-
-                <div className='flex flex-col gap-7 w-[15vw] text-white font-bold p-12 text-xl'>
-
-                    {/* <div className='p-4 text-xl'>M.S.Mani Rewindings</div> */}
-                    {
-                        navlink.map((value,index)=>(
-                          <NavLink key={index} to={value.path}>{value.title}</NavLink>
-                        ))
-                    }
-                    {/* <div className='hover:bg-white hover:text-black '>Dashboard</div>
-                    <div className='hover:bg-white hover:text-black '>Sales Invoice</div>
-                    <div className='hover:bg-white hover:text-black '>PDFs</div> */}
-                </div>
+            {/* Navigation Links */}
+            <div className="flex flex-col gap-6 w-full text-white font-semibold mt-10">
+                {navlinks.map((link, index) => (
+                    <NavLink 
+                        key={index} 
+                        to={link.path} 
+                        className="text-lg py-3 text-center transition-all duration-300 
+                        hover:bg-white hover:text-gray-700 rounded-lg mx-4 shadow-md"
+                    >
+                        {link.title}
+                    </NavLink>
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;
